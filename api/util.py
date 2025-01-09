@@ -4,11 +4,7 @@ import json
 import numpy as np
 import base64
 from artifacts.api.wavelet import w2d
-from sklearn.svm import SVC
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.pipeline import Pipeline
-from sklearn.metrics import classification_report
+
 
 __class_name_to_number={}
 __class_number_to_name={}
