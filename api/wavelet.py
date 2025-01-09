@@ -1,0 +1,27 @@
+import pywt  #Importing PY wavelets 
+import numpy as np
+import cv2
+
+#Function that returns the wavelet image from raw image
+def w2d(img,mode ="haar",level =1):
+    imArray =img
+    #datatype conversions
+    #convert to grayscale
+    imArray =cv2.cvtColor(imArray,cv2.COLOR_RGB2GRAY)
+    #convert to float
+    imArray =np.float32(imArray)
+    imArray /=255
+    #compute coefficients
+    coeffs =pywt.wavedec2(imArray,mode,level=level)
+
+    #Process the coefficients
+    coeffs_H =list(coeffs)
+    coeffs_H[0] *=0
+
+    #Reconstruction
+    imArray_H = pywt.waverec2(coeffs_H,mode)
+    imArray_H *= 255
+    imArray_H =np.uint8(imArray_H)
+
+    return imArray_H
+    
